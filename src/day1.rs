@@ -1,31 +1,24 @@
 pub fn solve_part1(input: &str) -> i32 {
     let rotations = parse_input(input);
     let mut dial = Dial::new();
-    rotations
-        .iter()
-        .for_each(|rotation| dial.rotate(rotation.0, rotation.1));
+    rotations.for_each(|rotation| dial.rotate(rotation.0, rotation.1));
     dial.exact_zeroes
 }
 
 pub fn solve_part2(input: &str) -> i32 {
     let rotations = parse_input(input);
     let mut dial = Dial::new();
-    rotations
-        .iter()
-        .for_each(|rotation| dial.rotate(rotation.0, rotation.1));
+    rotations.for_each(|rotation| dial.rotate(rotation.0, rotation.1));
     dial.exact_zeroes + dial.crossed_zeroes
 }
 
-fn parse_input(input: &str) -> Vec<(char, i32)> {
-    input
-        .lines()
-        .map(|line| {
-            let rotation = line.split_at(1);
-            let direction = rotation.0.chars().next().unwrap();
-            let value = rotation.1.parse::<i32>().unwrap();
-            (direction, value)
-        })
-        .collect()
+fn parse_input(input: &str) -> impl Iterator<Item=(char, i32)> {
+    input.lines().map(|line| {
+        let rotation = line.split_at(1);
+        let direction = rotation.0.chars().next().unwrap();
+        let value = rotation.1.parse::<i32>().unwrap();
+        (direction, value)
+    })
 }
 
 struct Dial {
