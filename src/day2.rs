@@ -26,13 +26,14 @@ fn parse_input(input: &str) -> impl Iterator<Item = RangeInclusive<u64>> {
 fn add_invalid_ids(range: RangeInclusive<u64>) -> u64 {
     let mut invalid_ids_value = 0u64;
     range.for_each(|number| {
-        let digits = number_to_digits(number);
-        if digits.len() % 2 == 0 {
-            let mid_index = digits.len() / 2;
-            let (first, second) = digits.split_at(mid_index);
+        let number_str = number.to_string();
+        let length = number_str.len();
+        if length % 2 == 0 {
+            let mid_index = length / 2;
+            let (first, second) = number_str.split_at(mid_index);
             if first == second {
-                invalid_ids_value += number;
-            };
+                invalid_ids_value += number_str.parse::<u64>().unwrap();
+            }
         }
     });
     invalid_ids_value
@@ -58,12 +59,11 @@ fn add_invalid_ids_with_repeats(range: RangeInclusive<u64>) -> u64 {
 
 fn number_to_digits(number: u64) -> Vec<u64> {
     let mut number = number;
-    let mut digits = vec![];
+    let mut digits = Vec::with_capacity(10);
     while number > 0 {
-        digits.push(number % 10);
+        digits.insert(0, number % 10);
         number = number / 10;
     }
-    digits.reverse();
     digits
 }
 
