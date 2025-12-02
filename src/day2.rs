@@ -13,7 +13,7 @@ pub fn solve_part2(input: &str) -> u64 {
         .sum()
 }
 
-fn parse_input(input: &str) -> impl Iterator<Item=RangeInclusive<u64>> {
+fn parse_input(input: &str) -> impl Iterator<Item = RangeInclusive<u64>> {
     input
         .lines()
         .next()
