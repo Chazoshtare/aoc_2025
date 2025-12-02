@@ -1,4 +1,3 @@
-use std::collections::HashSet;
 use std::ops::RangeInclusive;
 
 pub fn solve_part1(input: &str) -> u64 {
@@ -40,21 +39,24 @@ fn add_invalid_ids(range: RangeInclusive<u64>) -> u64 {
 }
 
 fn add_invalid_ids_with_repeats(range: RangeInclusive<u64>) -> u64 {
-    let mut invalid_ids = HashSet::new();
-    range.for_each(|number| {
-        let digits = number_to_digits(number);
-        let max_split = digits.len() / 2;
-        (1..=max_split).for_each(|split| {
-            if digits.len() % split == 0 {
-                let mut chunks = digits.chunks_exact(split);
-                let pattern = chunks.next().unwrap();
-                if chunks.all(|chunk| chunk == pattern) {
-                    invalid_ids.insert(number);
-                };
-            }
-        })
-    });
-    invalid_ids.iter().sum()
+    range
+        .filter(|number| is_invalid_with_repeats(*number))
+        .sum()
+}
+
+fn is_invalid_with_repeats(number: u64) -> bool {
+    let digits = number_to_digits(number);
+    let max_split = digits.len() / 2;
+    for split in (1..=max_split) {
+        if digits.len() % split == 0 {
+            let mut chunks = digits.chunks_exact(split);
+            let pattern = chunks.next().unwrap();
+            if chunks.all(|chunk| chunk == pattern) {
+                return true;
+            };
+        }
+    }
+    false
 }
 
 fn number_to_digits(number: u64) -> Vec<u64> {
