@@ -1,2 +1,4 @@
 /target
 inputs/test_input.txt
+flamegraph.svg
+perf.data
