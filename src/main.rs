@@ -1,5 +1,6 @@
 mod day1;
 mod day2;
+mod day3;
 
 use std::fs;
 use std::path::Path;
@@ -7,19 +8,25 @@ use std::path::Path;
 fn main() {
     let day1_input = read_input(Path::new("inputs/day1.txt"));
     let solution1_1 = day1::solve_part1(&day1_input);
-    println!("Day 1, part 1 solution: {}", solution1_1);
+    println!("Day 1, part 1 solution: {solution1_1}");
     let solution1_2 = day1::solve_part2(&day1_input);
-    println!("Day 1, part 2 solution: {}", solution1_2);
+    println!("Day 1, part 2 solution: {solution1_2}");
 
     let day2_input = read_input(Path::new("inputs/day2.txt"));
     let solution2_1 = day2::solve_part1(&day2_input);
-    println!("Day 2, part 1 solution: {}", solution2_1);
+    println!("Day 2, part 1 solution: {solution2_1}");
     let solution2_2 = day2::solve_part2(&day2_input);
-    println!("Day 2, part 2 solution: {}", solution2_2);
+    println!("Day 2, part 2 solution: {solution2_2}");
+
+    let day3_input = read_input(Path::new("inputs/day3.txt"));
+    let solution3_1 = day3::solve_part1(&day3_input);
+    println!("Day 3, part 1 solution: {solution3_1}");
+    let solution3_2 = day3::solve_part2(&day3_input);
+    println!("Day 3, part 2 solution: {solution3_2}");
 }
 
 fn read_input(path: &Path) -> String {
-    fs::read_to_string(path).expect(format!("couldn't read input file {:?}", path).as_str())
+    fs::read_to_string(path).unwrap_or_else(|_| panic!("couldn't read input file {path:?}"))
 }
 
 #[cfg(test)]
@@ -52,5 +59,19 @@ mod tests {
         let day2_input = read_input(Path::new("inputs/day2.txt"));
         let solution = day2::solve_part2(&day2_input);
         assert_eq!(solution, 46769308485);
+    }
+
+    #[test]
+    fn day3_part1_returns_correct_solution() {
+        let day3_input = read_input(Path::new("inputs/day3.txt"));
+        let solution = day3::solve_part1(&day3_input);
+        assert_eq!(solution, 17301);
+    }
+
+    #[test]
+    fn day3_part2_returns_correct_solution() {
+        let day3_input = read_input(Path::new("inputs/day3.txt"));
+        let solution = day3::solve_part2(&day3_input);
+        assert_eq!(solution, 172162399742349);
     }
 }
