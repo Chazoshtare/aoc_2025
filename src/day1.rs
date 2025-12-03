@@ -40,7 +40,7 @@ impl Dial {
         match direction {
             'L' => self.rotate_left(value),
             'R' => self.rotate_right(value),
-            _ => panic!("wrong direction: {}", direction),
+            _ => panic!("wrong direction: {direction}"),
         }
         if self.value == 0 {
             self.exact_zeroes += 1;
