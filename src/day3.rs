@@ -38,7 +38,6 @@ fn highest_two_battery_joltage(batteries: &[u64]) -> u64 {
 
 fn highest_eleven_battery_joltage(batteries: &[u64]) -> u64 {
     let mut selected = vec![];
-    //
     let mut from = 0;
     for i in 0..=11 {
         let to = batteries.len() - 11 + i;
