@@ -28,9 +28,9 @@ pub fn solve_part2(input: &str) -> usize {
             break;
         }
         removed += removable.len();
-        removable
-            .iter()
-            .for_each(|coordinates| grid.replace_at(coordinates, '.'));
+        for coordinates in removable {
+            grid.replace_at(&coordinates, '.');
+        }
     }
     removed
 }
