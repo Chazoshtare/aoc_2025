@@ -5,6 +5,7 @@ mod day4;
 mod day5;
 mod day6;
 mod grid;
+mod day7;
 
 use std::fs;
 use std::path::Path;
@@ -45,6 +46,12 @@ fn main() {
     println!("Day 6, part 1 solution: {solution6_1}");
     let solution6_2 = day6::solve_part2(&day6_input);
     println!("Day 6, part 2 solution: {solution6_2}");
+
+    let day7_input = read_input(Path::new("inputs/day7.txt"));
+    let solution7_1 = day7::solve_part1(&day7_input);
+    println!("Day 7, part 1 solution: {solution7_1}",);
+    let solution7_2 = day7::solve_part2(&day7_input);
+    println!("Day 7, part 2 solution: {solution7_2}",);
 }
 
 fn read_input(path: &Path) -> String {
@@ -137,5 +144,19 @@ mod tests {
         let day6_input = read_input(Path::new("inputs/day6.txt"));
         let solution = day6::solve_part2(&day6_input);
         assert_eq!(solution, 8811937976367);
+    }
+
+    #[test]
+    fn day7_part1_returns_correct_solution() {
+        let day7_input = read_input(Path::new("inputs/day7.txt"));
+        let solution = day7::solve_part1(&day7_input);
+        assert_eq!(solution, 1539);
+    }
+
+    #[test]
+    fn day7_part2_returns_correct_solution() {
+        let day7_input = read_input(Path::new("inputs/day7.txt"));
+        let solution = day7::solve_part2(&day7_input);
+        assert_eq!(solution, 6479180385864);
     }
 }
