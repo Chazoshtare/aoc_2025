@@ -6,6 +6,7 @@ mod day5;
 mod day6;
 mod day7;
 mod day8;
+mod day9;
 mod grid;
 
 use std::fs;
@@ -50,15 +51,21 @@ fn main() {
 
     let day7_input = read_input(Path::new("inputs/day7.txt"));
     let solution7_1 = day7::solve_part1(&day7_input);
-    println!("Day 7, part 1 solution: {solution7_1}", );
+    println!("Day 7, part 1 solution: {solution7_1}");
     let solution7_2 = day7::solve_part2(&day7_input);
-    println!("Day 7, part 2 solution: {solution7_2}", );
+    println!("Day 7, part 2 solution: {solution7_2}");
 
     let day8_input = read_input(Path::new("inputs/day8.txt"));
     let solution8_1 = day8::solve_part1(&day8_input);
-    println!("Day 8, part 1 solution: {solution8_1}"); // 42840
+    println!("Day 8, part 1 solution: {solution8_1}");
     let solution8_2 = day8::solve_part2(&day8_input);
-    println!("Day 8, part 2 solution: {solution8_2}", ); // 170629052
+    println!("Day 8, part 2 solution: {solution8_2}");
+
+    let day9_input = read_input(Path::new("inputs/day9.txt"));
+    let solution9_1 = day9::solve_part1(&day9_input);
+    println!("Day 9, part 1 solution: {solution9_1}");
+    let solution9_2 = day9::solve_part2(&day9_input);
+    println!("Day 9, part 2 solution: {solution9_2}");
 }
 
 fn read_input(path: &Path) -> String {
@@ -179,5 +186,19 @@ mod tests {
         let day8_input = read_input(Path::new("inputs/day8.txt"));
         let solution = day8::solve_part2(&day8_input);
         assert_eq!(solution, 170629052);
+    }
+
+    #[test]
+    fn day9_part1_returns_correct_solution() {
+        let day9_input = read_input(Path::new("inputs/day9.txt"));
+        let solution = day9::solve_part1(&day9_input);
+        assert_eq!(solution, 4769758290);
+    }
+
+    #[test]
+    fn day9_part2_returns_correct_solution() {
+        let day9_input = read_input(Path::new("inputs/day9.txt"));
+        let solution = day9::solve_part2(&day9_input);
+        assert_eq!(solution, 1588990708);
     }
 }

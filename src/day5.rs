@@ -35,7 +35,7 @@ pub fn solve_part2(input: &str) -> usize {
         }
         results.push(current);
     }
-    results.iter().map(|result| result.clone().count()).sum()
+    results.into_iter().map(|result| result.count()).sum()
 }
 
 fn parse_input(input: &str) -> (Vec<RangeInclusive<u64>>, Vec<u64>) {
