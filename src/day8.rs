@@ -36,8 +36,8 @@ pub fn solve_part2(input: &str) -> i64 {
     let from_wall: i64;
     loop {
         let shortest = distances.remove(0);
-        let circuit_a = *circuits.get(&shortest.junction_a).unwrap();
-        let circuit_b = *circuits.get(&shortest.junction_b).unwrap();
+        let circuit_a = *circuits.get(shortest.junction_a).unwrap();
+        let circuit_b = *circuits.get(shortest.junction_b).unwrap();
         if circuit_a != circuit_b {
             for (junction, circuit_number) in circuits.clone() {
                 if circuit_number == circuit_a {
@@ -69,7 +69,7 @@ fn parse_input(input: &str) -> Vec<Junction> {
         .collect()
 }
 
-fn calculate_all_distances(junctions: &[Junction]) -> Vec<Distance> {
+fn calculate_all_distances(junctions: &[Junction]) -> Vec<Distance<'_>> {
     let mut distances = vec![];
     for i in 0..junctions.len() {
         for j in (i + 1)..junctions.len() {
@@ -130,18 +130,18 @@ impl Junction {
     }
 }
 
-struct Distance {
-    junction_a: Junction,
-    junction_b: Junction,
+struct Distance<'a> {
+    junction_a: &'a Junction,
+    junction_b: &'a Junction,
     distance: i64,
 }
 
-impl Distance {
-    fn calculate(junction_a: &Junction, junction_b: &Junction) -> Self {
+impl<'a> Distance<'a> {
+    fn calculate(junction_a: &'a Junction, junction_b: &'a Junction) -> Self {
         let distance = junction_a.distance_to(junction_b);
         Distance {
-            junction_a: junction_a.clone(),
-            junction_b: junction_b.clone(),
+            junction_a,
+            junction_b,
             distance,
         }
     }
