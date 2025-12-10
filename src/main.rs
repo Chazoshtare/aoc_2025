@@ -1,4 +1,6 @@
 mod day1;
+mod day10a;
+mod day10b;
 mod day2;
 mod day3;
 mod day4;
@@ -66,6 +68,12 @@ fn main() {
     println!("Day 9, part 1 solution: {solution9_1}");
     let solution9_2 = day9::solve_part2(&day9_input);
     println!("Day 9, part 2 solution: {solution9_2}");
+
+    let day10_input = read_input(Path::new("inputs/day10.txt"));
+    let solution10_1 = day10a::solve_part1(&day10_input);
+    println!("Day 10, part 1 solution: {solution10_1}");
+    let solution10_2 = day10b::solve_part2(&day10_input);
+    println!("Day 10, part 2 solution: {solution10_2}");
 }
 
 fn read_input(path: &Path) -> String {
@@ -200,5 +208,19 @@ mod tests {
         let day9_input = read_input(Path::new("inputs/day9.txt"));
         let solution = day9::solve_part2(&day9_input);
         assert_eq!(solution, 1588990708);
+    }
+
+    #[test]
+    fn day10_part1_returns_correct_solution() {
+        let day10_input = read_input(Path::new("inputs/day10.txt"));
+        let solution = day10a::solve_part1(&day10_input);
+        assert_eq!(solution, 500);
+    }
+
+    #[test]
+    fn day10_part2_returns_correct_solution() {
+        let day10_input = read_input(Path::new("inputs/day10.txt"));
+        let solution = day10b::solve_part2(&day10_input);
+        assert_eq!(solution, 19763f64);
     }
 }
