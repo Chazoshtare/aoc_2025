@@ -8,21 +8,23 @@ pub fn solve_part1(input: &str) -> usize {
 
 pub fn solve_part2(input: &str) -> usize {
     let devices = parse_input(input);
-    // let dac_to_fft = get_paths(&devices, "dac", "fft", "");
-    // println!("{}", dac_to_fft.len());
-    let dtf = count_paths(&devices, "dac", "fft", "out", &mut HashMap::new());
-    println!("dtf: {}", dtf);
-    let ftd = count_paths(&devices, "fft", "dac", "out", &mut HashMap::new());
-    println!("dtf: {}", dtf);
-    // let fft_to_dac = get_paths(&devices, "fft", "dac");
-    // println!("{}", fft_to_dac.len());
+    let svr_to_dac = count_paths(&devices, "svr", "dac", &["out", "fft"], &mut HashMap::new());
+    let dac_to_fft = count_paths(&devices, "dac", "fft", &["out"], &mut HashMap::new());
+    let fft_to_out = count_paths(&devices, "fft", "out", &["dac"], &mut HashMap::new());
 
-    0
-    // paths
-    //     .iter()
-    //     .filter(|path| path.last().unwrap() == &"out")
-    //     .filter(|path| path.contains(&"fft") && path.contains(&"dac"))
-    //     .count()
+    println!("std {}", svr_to_dac);
+    println!("dtf {}", dac_to_fft);
+    println!("fto {}", fft_to_out);
+
+    let svr_to_fft = count_paths(&devices, "svr", "fft", &["out", "dac"], &mut HashMap::new());
+    let fft_to_dac = count_paths(&devices, "fft", "dac", &["out"], &mut HashMap::new());
+    let dac_to_out = count_paths(&devices, "dac", "out", &["fft"], &mut HashMap::new());
+
+    println!("stf {}", svr_to_fft);
+    println!("ftd {}", fft_to_dac);
+    println!("dto {}", dac_to_out);
+
+    svr_to_fft * fft_to_dac * dac_to_out
 }
 
 fn get_paths<'a>(
@@ -70,13 +72,13 @@ fn count_paths(
     devices: &HashMap<&str, HashSet<&str>>,
     from: &str,
     to: &str,
-    ignoring: &str,
+    ignoring: &[&str],
     counts: &mut HashMap<String, usize>,
 ) -> usize {
     if from == to {
         return 1;
     }
-    if from == ignoring {
+    if ignoring.contains(&from) {
         return 0;
     }
     if let Some(count) = counts.get(from) {
