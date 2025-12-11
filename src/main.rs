@@ -10,70 +10,78 @@ mod day7;
 mod day8;
 mod day9;
 mod grid;
+mod day11;
 
 use std::fs;
 use std::path::Path;
 
 fn main() {
-    let day1_input = read_input(Path::new("inputs/day1.txt"));
-    let solution1_1 = day1::solve_part1(&day1_input);
-    println!("Day 1, part 1 solution: {solution1_1}");
-    let solution1_2 = day1::solve_part2(&day1_input);
-    println!("Day 1, part 2 solution: {solution1_2}");
+    // let day1_input = read_input(Path::new("inputs/day1.txt"));
+    // let solution1_1 = day1::solve_part1(&day1_input);
+    // println!("Day 1, part 1 solution: {solution1_1}");
+    // let solution1_2 = day1::solve_part2(&day1_input);
+    // println!("Day 1, part 2 solution: {solution1_2}");
+    //
+    // let day2_input = read_input(Path::new("inputs/day2.txt"));
+    // let solution2_1 = day2::solve_part1(&day2_input);
+    // println!("Day 2, part 1 solution: {solution2_1}");
+    // let solution2_2 = day2::solve_part2(&day2_input);
+    // println!("Day 2, part 2 solution: {solution2_2}");
+    //
+    // let day3_input = read_input(Path::new("inputs/day3.txt"));
+    // let solution3_1 = day3::solve_part1(&day3_input);
+    // println!("Day 3, part 1 solution: {solution3_1}");
+    // let solution3_2 = day3::solve_part2(&day3_input);
+    // println!("Day 3, part 2 solution: {solution3_2}");
+    //
+    // let day4_input = read_input(Path::new("inputs/day4.txt"));
+    // let solution4_1 = day4::solve_part1(&day4_input);
+    // println!("Day 4, part 1 solution: {solution4_1}");
+    // let solution4_2 = day4::solve_part2(&day4_input);
+    // println!("Day 4, part 2 solution: {solution4_2}");
+    //
+    // let day5_input = read_input(Path::new("inputs/day5.txt"));
+    // let solution5_1 = day5::solve_part1(&day5_input);
+    // println!("Day 5, part 1 solution: {solution5_1}");
+    // let solution5_2 = day5::solve_part2(&day5_input);
+    // println!("Day 5, part 2 solution: {solution5_2}");
+    //
+    // let day6_input = read_input(Path::new("inputs/day6.txt"));
+    // let solution6_1 = day6::solve_part1(&day6_input);
+    // println!("Day 6, part 1 solution: {solution6_1}");
+    // let solution6_2 = day6::solve_part2(&day6_input);
+    // println!("Day 6, part 2 solution: {solution6_2}");
+    //
+    // let day7_input = read_input(Path::new("inputs/day7.txt"));
+    // let solution7_1 = day7::solve_part1(&day7_input);
+    // println!("Day 7, part 1 solution: {solution7_1}");
+    // let solution7_2 = day7::solve_part2(&day7_input);
+    // println!("Day 7, part 2 solution: {solution7_2}");
+    //
+    // let day8_input = read_input(Path::new("inputs/day8.txt"));
+    // let solution8_1 = day8::solve_part1(&day8_input);
+    // println!("Day 8, part 1 solution: {solution8_1}");
+    // let solution8_2 = day8::solve_part2(&day8_input);
+    // println!("Day 8, part 2 solution: {solution8_2}");
+    //
+    // let day9_input = read_input(Path::new("inputs/day9.txt"));
+    // let solution9_1 = day9::solve_part1(&day9_input);
+    // println!("Day 9, part 1 solution: {solution9_1}");
+    // let solution9_2 = day9::solve_part2(&day9_input);
+    // println!("Day 9, part 2 solution: {solution9_2}");
+    //
+    // let day10_input = read_input(Path::new("inputs/day10.txt"));
+    // let solution10_1 = day10a::solve_part1(&day10_input);
+    // println!("Day 10, part 1 solution: {solution10_1}");
+    // let solution10_2 = day10b::solve_part2(&day10_input);
+    // println!("Day 10, part 2 solution: {solution10_2}");
 
-    let day2_input = read_input(Path::new("inputs/day2.txt"));
-    let solution2_1 = day2::solve_part1(&day2_input);
-    println!("Day 2, part 1 solution: {solution2_1}");
-    let solution2_2 = day2::solve_part2(&day2_input);
-    println!("Day 2, part 2 solution: {solution2_2}");
-
-    let day3_input = read_input(Path::new("inputs/day3.txt"));
-    let solution3_1 = day3::solve_part1(&day3_input);
-    println!("Day 3, part 1 solution: {solution3_1}");
-    let solution3_2 = day3::solve_part2(&day3_input);
-    println!("Day 3, part 2 solution: {solution3_2}");
-
-    let day4_input = read_input(Path::new("inputs/day4.txt"));
-    let solution4_1 = day4::solve_part1(&day4_input);
-    println!("Day 4, part 1 solution: {solution4_1}");
-    let solution4_2 = day4::solve_part2(&day4_input);
-    println!("Day 4, part 2 solution: {solution4_2}");
-
-    let day5_input = read_input(Path::new("inputs/day5.txt"));
-    let solution5_1 = day5::solve_part1(&day5_input);
-    println!("Day 5, part 1 solution: {solution5_1}");
-    let solution5_2 = day5::solve_part2(&day5_input);
-    println!("Day 5, part 2 solution: {solution5_2}");
-
-    let day6_input = read_input(Path::new("inputs/day6.txt"));
-    let solution6_1 = day6::solve_part1(&day6_input);
-    println!("Day 6, part 1 solution: {solution6_1}");
-    let solution6_2 = day6::solve_part2(&day6_input);
-    println!("Day 6, part 2 solution: {solution6_2}");
-
-    let day7_input = read_input(Path::new("inputs/day7.txt"));
-    let solution7_1 = day7::solve_part1(&day7_input);
-    println!("Day 7, part 1 solution: {solution7_1}");
-    let solution7_2 = day7::solve_part2(&day7_input);
-    println!("Day 7, part 2 solution: {solution7_2}");
-
-    let day8_input = read_input(Path::new("inputs/day8.txt"));
-    let solution8_1 = day8::solve_part1(&day8_input);
-    println!("Day 8, part 1 solution: {solution8_1}");
-    let solution8_2 = day8::solve_part2(&day8_input);
-    println!("Day 8, part 2 solution: {solution8_2}");
-
-    let day9_input = read_input(Path::new("inputs/day9.txt"));
-    let solution9_1 = day9::solve_part1(&day9_input);
-    println!("Day 9, part 1 solution: {solution9_1}");
-    let solution9_2 = day9::solve_part2(&day9_input);
-    println!("Day 9, part 2 solution: {solution9_2}");
-
-    let day10_input = read_input(Path::new("inputs/day10.txt"));
-    let solution10_1 = day10a::solve_part1(&day10_input);
-    println!("Day 10, part 1 solution: {solution10_1}");
-    let solution10_2 = day10b::solve_part2(&day10_input);
-    println!("Day 10, part 2 solution: {solution10_2}");
+    let day11_input = read_input(Path::new("inputs/day11.txt"));
+    let solution11_1 = day11::solve_part1(&day11_input);
+    println!("Day 11, part 1 solution: {solution11_1}");
+    // let day11_input = read_input(Path::new("inputs/test_input.txt"));
+    let solution11_2 = day11::solve_part2(&day11_input);
+    println!("Day 11, part 2 solution: {solution11_2}");
 }
 
 fn read_input(path: &Path) -> String {
@@ -222,5 +230,12 @@ mod tests {
         let day10_input = read_input(Path::new("inputs/day10.txt"));
         let solution = day10b::solve_part2(&day10_input);
         assert_eq!(solution, 19763f64);
+    }
+
+    #[test]
+    fn day11_part1_returns_correct_solution() {
+        let day11_input = read_input(Path::new("inputs/day11.txt"));
+        let solution = day11::solve_part1(&day11_input);
+        assert_eq!(solution, 539);
     }
 }
