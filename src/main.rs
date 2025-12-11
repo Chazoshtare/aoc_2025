@@ -1,6 +1,8 @@
 mod day1;
 mod day10a;
 mod day10b;
+mod day11;
+mod day12;
 mod day2;
 mod day3;
 mod day4;
@@ -74,6 +76,16 @@ fn main() {
     println!("Day 10, part 1 solution: {solution10_1}");
     let solution10_2 = day10b::solve_part2(&day10_input);
     println!("Day 10, part 2 solution: {solution10_2}");
+
+    let day11_input = read_input(Path::new("inputs/day11.txt"));
+    let solution11_1 = day11::solve_part1(&day11_input);
+    println!("Day 11, part 1 solution: {solution11_1}");
+    let solution11_2 = day11::solve_part2(&day11_input);
+    println!("Day 11, part 2 solution: {solution11_2}");
+
+    let day12_input = read_input(Path::new("inputs/day12.txt"));
+    let solution12_1 = day12::solve_part1(&day12_input);
+    println!("Day 12, part 1 solution: {solution12_1}");
 }
 
 fn read_input(path: &Path) -> String {
@@ -222,5 +234,26 @@ mod tests {
         let day10_input = read_input(Path::new("inputs/day10.txt"));
         let solution = day10b::solve_part2(&day10_input);
         assert_eq!(solution, 19763f64);
+    }
+
+    #[test]
+    fn day11_part1_returns_correct_solution() {
+        let day11_input = read_input(Path::new("inputs/day11.txt"));
+        let solution = day11::solve_part1(&day11_input);
+        assert_eq!(solution, 539);
+    }
+
+    #[test]
+    fn day11_part2_returns_correct_solution() {
+        let day11_input = read_input(Path::new("inputs/day11.txt"));
+        let solution = day11::solve_part2(&day11_input);
+        assert_eq!(solution, 413167078187872);
+    }
+
+    #[test]
+    fn day12_part1_returns_correct_solution() {
+        let day12_input = read_input(Path::new("inputs/day12.txt"));
+        let solution = day12::solve_part1(&day12_input);
+        assert_eq!(solution, 565);
     }
 }
