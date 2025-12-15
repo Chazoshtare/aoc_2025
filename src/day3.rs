@@ -6,14 +6,14 @@ pub fn solve_part1(input: &str) -> u64 {
 
 pub fn solve_part2(input: &str) -> u64 {
     parse_input(input)
-        .map(|batteries| highest_eleven_battery_joltage(&batteries))
+        .map(|batteries| highest_twelve_battery_joltage(&batteries))
         .sum()
 }
 
 fn parse_input(input: &str) -> impl Iterator<Item = Vec<u64>> {
     input.lines().map(|line| {
         line.chars()
-            .map(|char| char.to_digit(10).unwrap() as u64)
+            .map(|char| u64::from(char.to_digit(10).unwrap()))
             .collect()
     })
 }
@@ -36,8 +36,8 @@ fn highest_two_battery_joltage(batteries: &[u64]) -> u64 {
     first * 10 + second
 }
 
-fn highest_eleven_battery_joltage(batteries: &[u64]) -> u64 {
-    let mut selected = vec![];
+fn highest_twelve_battery_joltage(batteries: &[u64]) -> u64 {
+    let mut selected = Vec::with_capacity(12);
     let mut from = 0;
     for i in 0..=11 {
         let to = batteries.len() - 11 + i;
@@ -90,14 +90,14 @@ mod tests {
     #[test]
     fn finds_highest_eleven_battery_joltage() {
         let batteries = vec![2, 3, 4, 2, 3, 4, 2, 3, 4, 2, 3, 4, 2, 7, 8];
-        let joltage = highest_eleven_battery_joltage(&batteries);
+        let joltage = highest_twelve_battery_joltage(&batteries);
         assert_eq!(joltage, 434234234278);
     }
 
     #[test]
     fn finds_highest_eleven_battery_joltage_with_leading_digit_early() {
         let batteries = vec![8, 1, 8, 1, 8, 1, 9, 1, 1, 1, 1, 2, 1, 1, 1];
-        let joltage = highest_eleven_battery_joltage(&batteries);
+        let joltage = highest_twelve_battery_joltage(&batteries);
         assert_eq!(joltage, 888911112111);
     }
 }

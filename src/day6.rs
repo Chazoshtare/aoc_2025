@@ -9,24 +9,21 @@ pub fn solve_part1(input: &str) -> u64 {
 }
 
 pub fn solve_part2(input: &str) -> u64 {
-    let mut lines = input.lines().rev();
-    let operations: Vec<char> = lines.next().unwrap().chars().collect();
-    let numbers: Vec<Vec<char>> = lines.rev().map(|line| line.chars().collect()).collect();
-
-    let max_position = numbers.iter().map(Vec::len).max().unwrap() - 1;
-    let mut cephal_numbers: Vec<u64> = vec![];
+    let lines: Vec<Vec<char>> = input.lines().map(|line| line.chars().collect()).collect();
+    let max_position = lines[0].len() - 1;
+    let operations_index = lines.len() - 1;
     let mut total = 0;
+    let mut cephal_numbers: Vec<u64> = vec![];
     for cursor in (0..=max_position).rev() {
-        let mut cephal_number = String::new();
-        for chars in &numbers {
-            cephal_number.push(chars[cursor]);
-        }
-        let cephal_number_str = cephal_number.trim();
-        if !cephal_number_str.is_empty() {
-            cephal_numbers.push(cephal_number_str.parse().unwrap());
+        let cephal_number_str = (0..operations_index)
+            .map(|number_line| lines[number_line][cursor])
+            .collect::<String>();
+        let cephal_number = cephal_number_str.trim();
+        if !cephal_number.is_empty() {
+            cephal_numbers.push(cephal_number.parse().unwrap());
         }
 
-        let operation = operations[cursor];
+        let operation = lines[operations_index][cursor];
         if operation != ' ' {
             let result = cephal_numbers
                 .iter()
