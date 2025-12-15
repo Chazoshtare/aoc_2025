@@ -13,10 +13,10 @@ pub fn solve_part2(input: &str) -> u64 {
     let operations: Vec<char> = lines.next().unwrap().chars().collect();
     let numbers: Vec<Vec<char>> = lines.rev().map(|line| line.chars().collect()).collect();
 
-    let mut cursor = numbers.iter().map(Vec::len).max().unwrap() - 1;
+    let max_position = numbers.iter().map(Vec::len).max().unwrap() - 1;
     let mut cephal_numbers: Vec<u64> = vec![];
     let mut total = 0;
-    loop {
+    for cursor in (0..=max_position).rev() {
         let mut cephal_number = String::new();
         for chars in &numbers {
             cephal_number.push(chars[cursor]);
@@ -36,10 +36,6 @@ pub fn solve_part2(input: &str) -> u64 {
             total += result;
             cephal_numbers.clear();
         }
-        if cursor == 0 {
-            break;
-        }
-        cursor -= 1;
     }
     total
 }
